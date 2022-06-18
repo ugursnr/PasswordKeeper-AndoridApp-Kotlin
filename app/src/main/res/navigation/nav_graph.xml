@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_passwordAddingFragment"
             app:destination="@id/passwordAddingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_passwordShowerFragment"
+            app:destination="@id/passwordShowerFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordAddingFragment"
@@ -22,5 +25,30 @@
         <action
             android:id="@+id/action_passwordAddingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordShowerFragment"
+        android:name="com.ugurrsnr.passwordkeeper.view.PasswordShowerFragment"
+        android:label="fragment_password_shower"
+        tools:layout="@layout/fragment_password_shower" >
+        <action
+            android:id="@+id/action_passwordShowerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="userID"
+            app:argType="string"
+            android:defaultValue="--" />
+        <argument
+            android:name="userPassword"
+            app:argType="string"
+            android:defaultValue="--" />
+        <argument
+            android:name="userImageURI"
+            app:argType="string"
+            android:defaultValue="--" />
+        <argument
+            android:name="userWebsite"
+            app:argType="string"
+            android:defaultValue="--" />
     </fragment>
 </navigation>

@@ -1,6 +1,23 @@
 <resources>
     <string name="app_name">PasswordKeeper</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_an_id">Enter an ID</string>
+    <string name="enter_a_password">Enter a Password</string>
+    <string name="save">SAVE</string>
+    <string name="enter_website_name">Enter website name</string>
+    <string name="websitedeneme">websiteDeneme</string>
+    <string name="your_d">your ıd</string>
+    <string name="your_password">your password</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
 
+    <string-array name="dropdown_choices">
+        <item>Facebook</item>
+        <item>Instagram</item>
+        <item>Twitter</item>
+        <item>Github</item>
+        <item>StackOverFlow</item>
+        <item>Other</item>
 
+    </string-array>
 </resources>
