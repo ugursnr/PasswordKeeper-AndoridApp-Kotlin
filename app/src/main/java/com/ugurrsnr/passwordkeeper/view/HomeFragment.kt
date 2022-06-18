@@ -8,12 +8,25 @@ import com.ugurrsnr.passwordkeeper.R
 
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.LinearLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ugurrsnr.passwordkeeper.adapter.UserAdapter
+import com.ugurrsnr.passwordkeeper.database.UserInfoDatabase
 import com.ugurrsnr.passwordkeeper.databinding.FragmentHomeBinding
+import com.ugurrsnr.passwordkeeper.model.UserInformations
+import com.ugurrsnr.passwordkeeper.viewmodel.HomeViewModel
+import kotlinx.coroutines.*
+
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var userAdapter : UserAdapter
+    private lateinit var viewModel : HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +45,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        userAdapter = UserAdapter(arrayListOf())
+        liveDataObserver()
 
-
+        binding.recyclerViewHome.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewHome.adapter = userAdapter
 
     }
 
+    private fun liveDataObserver(){
+        viewModel.userInformationList.observe(viewLifecycleOwner, Observer{
+            it?.let {
+                userAdapter.updateList(it)
+            }
+        })
+
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
