@@ -1,6 +1,5 @@
 package com.ugurrsnr.passwordkeeper.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -8,29 +7,31 @@ import com.ugurrsnr.passwordkeeper.R
 
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ugurrsnr.passwordkeeper.adapter.UserAdapter
-import com.ugurrsnr.passwordkeeper.database.UserInfoDatabase
 import com.ugurrsnr.passwordkeeper.databinding.FragmentHomeBinding
-import com.ugurrsnr.passwordkeeper.model.UserInformations
-import com.ugurrsnr.passwordkeeper.viewmodel.HomeViewModel
-import kotlinx.coroutines.*
+import com.ugurrsnr.passwordkeeper.viewmodel.InformationViewModel
 
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var userAdapter : UserAdapter
-    private lateinit var viewModel : HomeViewModel
+    private lateinit var viewModel : InformationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+            }
+
+        })
     }
 
     override fun onCreateView(
@@ -45,13 +46,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        userAdapter = UserAdapter(arrayListOf())
+        viewModel = ViewModelProvider(this).get(InformationViewModel::class.java)
+        userAdapter = UserAdapter(arrayListOf(),this)
         liveDataObserver()
 
         binding.recyclerViewHome.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewHome.adapter = userAdapter
-
+        registerForContextMenu(binding.recyclerViewHome)
     }
 
     private fun liveDataObserver(){
@@ -63,7 +64,27 @@ class HomeFragment : Fragment() {
 
     }
 
+    //Long Click Menu
+    override fun registerForContextMenu(view: View) {
+        super.registerForContextMenu(view)
+    }
 
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        MenuInflater(context).inflate(R.menu.long_click_menu,menu)
+        super.onCreateContextMenu(menu, v, menuInfo)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return super.onContextItemSelected(item)
+
+    }
+    //Long Click Menu
+
+    //Options Menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val menuInflater = inflater
         menuInflater.inflate(R.menu.add_menu, menu)
@@ -79,7 +100,7 @@ class HomeFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
-
+    //Options Menu
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -9,26 +9,22 @@ import androidx.lifecycle.viewModelScope
 import com.ugurrsnr.passwordkeeper.database.UserInfoDatabase
 import com.ugurrsnr.passwordkeeper.model.UserInformations
 import com.ugurrsnr.passwordkeeper.repo.InformationRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class InformationViewModel(application: Application) : AndroidViewModel(application) {
 
     val userInformationList: LiveData<List<UserInformations>>
     private val userInfoRepository : InformationRepository
+    val singleInformation = MutableLiveData<List<UserInformations>>()
 
     init{
         val dao = UserInfoDatabase.getDatabase(application).userInfoDao()
         userInfoRepository = InformationRepository(dao)
         userInformationList = userInfoRepository.getAllInformations
+
     }
-
-
-
 
 
     fun informationInsert(userInformation: UserInformations) = CoroutineScope(Dispatchers.IO).launch {
@@ -40,6 +36,15 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun informationDelete(userInformation: UserInformations) = CoroutineScope(Dispatchers.IO).launch {
         userInfoRepository.deleteSingleInfo(userInformation)
+    }
+    fun informationRead(infoUUID : Int) = CoroutineScope(Dispatchers.IO).launch{
+        val tempList = userInfoRepository.readSingleInfo(infoUUID)
+
+        withContext(Dispatchers.Main){
+            singleInformation.value = tempList
+
+        }
+
     }
 
 

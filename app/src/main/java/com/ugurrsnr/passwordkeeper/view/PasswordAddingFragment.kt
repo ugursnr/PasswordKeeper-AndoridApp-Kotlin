@@ -9,10 +9,12 @@ import android.view.ViewGroup
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 import com.ugurrsnr.passwordkeeper.databinding.FragmentPasswordAddingBinding
 import com.ugurrsnr.passwordkeeper.model.UserInformations
-import com.ugurrsnr.passwordkeeper.viewmodel.HomeViewModel
+import com.ugurrsnr.passwordkeeper.viewmodel.InformationViewModel
 
 
 class PasswordAddingFragment : Fragment() {
@@ -23,7 +25,7 @@ class PasswordAddingFragment : Fragment() {
     private lateinit var userIDInput : String
     private lateinit var userWebsiteInput : String
     private lateinit var userPasswordInput : String
-    private lateinit var viewModel : HomeViewModel
+    private lateinit var viewModel : InformationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,7 @@ class PasswordAddingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(InformationViewModel::class.java)
 
 
         binding.saveButton.setOnClickListener{
@@ -54,7 +56,9 @@ class PasswordAddingFragment : Fragment() {
             viewModel.informationInsert(userInfo)
 
             val actionToHome = PasswordAddingFragmentDirections.actionPasswordAddingFragmentToHomeFragment()
+
             Navigation.findNavController(it).navigate(actionToHome)
+
         }
 
     }

@@ -21,10 +21,13 @@
         android:id="@+id/passwordAddingFragment"
         android:name="com.ugurrsnr.passwordkeeper.view.PasswordAddingFragment"
         android:label="fragment_password_adding"
-        tools:layout="@layout/fragment_password_adding" >
+        tools:layout="@layout/fragment_password_adding"
+
+        >
         <action
             android:id="@+id/action_passwordAddingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/passwordShowerFragment"
@@ -50,5 +53,10 @@
             android:name="userWebsite"
             app:argType="string"
             android:defaultValue="--" />
+        <argument
+            android:name="informationUUID"
+            app:argType="integer"
+            android:defaultValue="-1" />
+
     </fragment>
 </navigation>

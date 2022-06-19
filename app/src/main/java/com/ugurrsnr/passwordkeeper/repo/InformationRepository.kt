@@ -1,10 +1,7 @@
 package com.ugurrsnr.passwordkeeper.repo
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
+import androidx.room.*
 import com.ugurrsnr.passwordkeeper.database.UserInfoDao
 import com.ugurrsnr.passwordkeeper.model.UserInformations
 
@@ -24,5 +21,12 @@ class InformationRepository(private val userDao : UserInfoDao) {
     fun deleteSingleInfo(userInformation: UserInformations){
         userDao.deleteSingleInfo(userInformation)
     }
+
+    fun readSingleInfo(infoUUID : Int) : List<UserInformations>{
+        return userDao.getSingleInfo(infoUUID)
+
+    }
+
+
 
 }

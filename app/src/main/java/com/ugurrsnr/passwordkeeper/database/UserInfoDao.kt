@@ -24,6 +24,9 @@ interface UserInfoDao {
     @Query("select * from informations order by informationId ASC")
     fun getAllInformations() : LiveData<List<UserInformations>>
 
+    @Query("select*from informations where informationId = :infoUUID")
+    fun getSingleInfo(infoUUID : Int) : List<UserInformations>
+
 
 
 }
