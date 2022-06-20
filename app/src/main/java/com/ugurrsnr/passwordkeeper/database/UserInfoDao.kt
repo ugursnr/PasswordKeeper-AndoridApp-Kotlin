@@ -18,7 +18,7 @@ interface UserInfoDao {
     @Delete
     fun deleteSingleInfo(userInformation: UserInformations)
 
-    @Update
+    @Update()
     fun updateInfo(userInformation: UserInformations)
 
     @Query("select * from informations order by informationId ASC")
@@ -27,7 +27,8 @@ interface UserInfoDao {
     @Query("select*from informations where informationId = :infoUUID")
     fun getSingleInfo(infoUUID : Int) : List<UserInformations>
 
-
+    @Query("update informations set userID = :newID, websiteName = :newWebsiteName, userPassword = :newUserPassword where informationId = :infoUUID")
+    fun updateSingleInfo(infoUUID : Int, newID : String,newWebsiteName:String, newUserPassword:String)
 
 }
 

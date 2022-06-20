@@ -26,6 +26,9 @@ class InformationRepository(private val userDao : UserInfoDao) {
         return userDao.getSingleInfo(infoUUID)
 
     }
+    fun updateSingleInfo(infoUUID : Int, newID : String,newWebsiteName:String, newUserPassword:String){
+        userDao.updateSingleInfo(infoUUID, newID ,newWebsiteName, newUserPassword)
+    }
 
 
 

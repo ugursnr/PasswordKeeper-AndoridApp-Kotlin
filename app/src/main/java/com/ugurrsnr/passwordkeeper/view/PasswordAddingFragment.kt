@@ -45,7 +45,6 @@ class PasswordAddingFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(InformationViewModel::class.java)
 
-
         binding.saveButton.setOnClickListener{
 
             userPasswordInput = binding.userPasswordInput.text.toString()
@@ -60,9 +59,7 @@ class PasswordAddingFragment : Fragment() {
             Navigation.findNavController(it).navigate(actionToHome)
 
         }
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

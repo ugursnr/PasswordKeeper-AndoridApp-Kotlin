@@ -42,7 +42,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -64,26 +63,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    //Long Click Menu
-    override fun registerForContextMenu(view: View) {
-        super.registerForContextMenu(view)
-    }
-
-    override fun onCreateContextMenu(
-        menu: ContextMenu,
-        v: View,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
-        MenuInflater(context).inflate(R.menu.long_click_menu,menu)
-        super.onCreateContextMenu(menu, v, menuInfo)
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return super.onContextItemSelected(item)
-
-    }
-    //Long Click Menu
-
     //Options Menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val menuInflater = inflater
@@ -101,6 +80,7 @@ class HomeFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
     //Options Menu
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

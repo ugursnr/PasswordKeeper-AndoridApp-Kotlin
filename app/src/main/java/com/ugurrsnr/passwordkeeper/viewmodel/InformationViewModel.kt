@@ -37,14 +37,16 @@ class InformationViewModel(application: Application) : AndroidViewModel(applicat
     fun informationDelete(userInformation: UserInformations) = CoroutineScope(Dispatchers.IO).launch {
         userInfoRepository.deleteSingleInfo(userInformation)
     }
+    fun singleInformationUpdate(infoUUID : Int, newID : String,newWebsiteName:String, newUserPassword:String) = CoroutineScope(Dispatchers.IO).launch {
+        userInfoRepository.updateSingleInfo(infoUUID, newID ,newWebsiteName, newUserPassword)
+    }
+
     fun informationRead(infoUUID : Int) = CoroutineScope(Dispatchers.IO).launch{
         val tempList = userInfoRepository.readSingleInfo(infoUUID)
 
         withContext(Dispatchers.Main){
             singleInformation.value = tempList
-
         }
-
     }
 
 

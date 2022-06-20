@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "informations")
 data class UserInformations(
 
-
     @ColumnInfo(name = "websiteName")
     val websiteName : String,
 
@@ -20,5 +19,6 @@ data class UserInformations(
 ) {
     @PrimaryKey(autoGenerate = true)
     var informationId: Int = 0
+
 
 }
