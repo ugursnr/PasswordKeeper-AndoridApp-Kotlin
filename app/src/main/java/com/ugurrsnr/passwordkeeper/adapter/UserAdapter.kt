@@ -20,30 +20,9 @@ import com.ugurrsnr.passwordkeeper.viewmodel.InformationViewModel
 class UserAdapter(val userInformationsList : ArrayList<UserInformations>, owner: ViewModelStoreOwner)
     : RecyclerView.Adapter<UserAdapter.UserInformationsViewHolder>() {
 
-
     val viewModel = ViewModelProvider(owner).get(InformationViewModel::class.java)
 
     class UserInformationsViewHolder(val binding: RecyclerViewRowBinding) :RecyclerView.ViewHolder(binding.root){
-
-        /* Long Click
-        init {
-            itemView.setOnClickListener(this)
-            itemView.setOnLongClickListener(this)
-        }
-
-        override fun onClick(view: View) {
-
-        }
-        override fun onLongClick(view: View): Boolean {
-            Toast.makeText(view.context, "long click", Toast.LENGTH_SHORT).show()
-
-
-
-            // Return true to indicate the click was handled
-            return true
-        }
-
-         */
 
     }
 
@@ -75,8 +54,6 @@ class UserAdapter(val userInformationsList : ArrayList<UserInformations>, owner:
 
         }
 
-
-
     }
 
 
@@ -90,7 +67,6 @@ class UserAdapter(val userInformationsList : ArrayList<UserInformations>, owner:
     override fun getItemCount(): Int {
         return userInformationsList.size
     }
-
 
 
 }

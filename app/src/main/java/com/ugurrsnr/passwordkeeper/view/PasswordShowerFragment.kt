@@ -29,9 +29,7 @@ class PasswordShowerFragment : Fragment() {
     private var informationUUID : Int = -1
     private lateinit var currentUser : UserInformations
     private lateinit var viewModel : InformationViewModel
-    private lateinit var idShowerTV :EditText
-    private lateinit var passwordShowerTV : EditText
-    private lateinit var websiteShowerTV : EditText
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +55,7 @@ class PasswordShowerFragment : Fragment() {
         //put uuid to view model to read data from database
         viewModel.informationRead(informationUUID)
 
-        //observe the output and get the information as list and show the informations on ui
+        //observe the output and get the information as list and show the user informations on ui
         liveDataObserver()
 
         binding.deleteButton.setOnClickListener{
@@ -70,7 +68,6 @@ class PasswordShowerFragment : Fragment() {
             val newPassword : String = binding.passwordShowerTV.text.toString()
             val newWebsite : String = binding.websiteShowerTV.text.toString()
 
-            val updatedUser = UserInformations(newWebsite,newID,newPassword)
 
             viewModel.singleInformationUpdate(currentUser.informationId,newID,newWebsite,newPassword)
             Toast.makeText(context,"Succesfully updated...",Toast.LENGTH_LONG).show()

@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
         binding.recyclerViewHome.layoutManager = LinearLayoutManager(context)
         binding.recyclerViewHome.adapter = userAdapter
-        registerForContextMenu(binding.recyclerViewHome)
+
     }
 
     private fun liveDataObserver(){
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
-    //Options Menu
+
 
     override fun onDestroyView() {
         super.onDestroyView()
